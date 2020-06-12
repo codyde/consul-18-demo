@@ -1,0 +1,20 @@
+{
+    "service": {
+        "name": "api",
+        "port": 5000,
+        "token": "<bootstra-token>",
+        "connect": {
+            "sidecar_service": {
+                "proxy": {
+                    "upstreams": [
+                        {
+                            "destination_name": "postgres",
+                            "datacenter": "hcaz",
+                            "local_bind_port": 5432
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

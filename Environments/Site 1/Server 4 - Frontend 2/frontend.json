@@ -1,0 +1,28 @@
+{
+    "service": {
+        "name": "frontend",
+        "port": 80,
+        "meta": {
+            "version": "2"
+        },
+        "token": "<bootstrap-token>",
+        "connect": {
+            "sidecar_service": {
+                "proxy": {
+                    "upstreams": [
+                        {
+                            "destination_name": "api",
+                            "datacenter": "hcaz",
+                            "local_bind_port": 5000,
+                            "config": {
+                                "passive_health_check": {
+                                    "max_failures": 9000
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

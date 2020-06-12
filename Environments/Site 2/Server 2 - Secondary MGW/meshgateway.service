@@ -1,0 +1,15 @@
+[Unit]
+Description="HashiCorp Consul Mesh Gateway"
+Documentation=https://www.consul.io/
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/consul connect envoy -mesh-gateway -token <bootstra-token> -register -service "gateway-secondary" -address "10.3.5.4:9998" -wan-address "52.247.234.161:9998" -admin-bind "127.0.0.1:19000" -expose-servers
+KillMode=process
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
